@@ -24,7 +24,9 @@ def covid_data_downloader(fecha):
         end_time = time()
         total_time = end_time - start_time
         print(r.status_code)
-        print(f"La descarga tomó {total_time} segundos")
+        if r.status_code == 200:
+            print("Descarga exitosa")
+            print(f"La descarga tomó {total_time} segundos")
 
 def covid_old_data_downloader(fecha):
     """Descarga la base de datos de una fecha anterior a la del día actual"""
@@ -44,8 +46,10 @@ def covid_old_data_downloader(fecha):
         end_time = time()
         total_time = end_time - start_time
         print(r.status_code)
-        print(f"La descarga tomó {total_time} segundos")
-
+        if r.status_code == 200:
+            print("Descarga exitosa")
+            print(f"La descarga tomó {total_time} segundos")
+            
 def read_covid_data(fecha):
     """
     Lee la base de datos de la carpeta y la carga como un data frame
