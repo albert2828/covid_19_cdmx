@@ -1,4 +1,6 @@
 .ipynb_checkpoints
-_pycache_
+__pycache__
 data
 others
+Prueba zip.ipynb
+.gitignore
