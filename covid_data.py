@@ -49,7 +49,7 @@ def covid_old_data_downloader(fecha):
         if r.status_code == 200:
             print("Descarga exitosa")
             print(f"La descarga tomó {total_time} segundos")
-            
+
 def read_covid_data(fecha):
     """
     Lee la base de datos de la carpeta y la carga como un data frame
@@ -57,12 +57,14 @@ def read_covid_data(fecha):
     zipname = "data/"+fecha+"COVID19MEXICO.zip"
     filename = fecha+"COVID19MEXICO.csv"
 
-    start_time = time()
-    zipfile = ZipFile(zipname)
-    df = pd.read_csv(zipfile.open(filename))
-
-    end_time = time()
-    total_time = end_time - start_time
+    try:
+        start_time = time()
+        zipfile = ZipFile(zipname)
+        df = pd.read_csv(zipfile.open(filename), parse_dates=True)
+        end_time = time()
+        total_time = end_time - start_time
+    except FileNotFoundError:
+        print("La base de datos no se encuentra en la carpeta.")
 
     print(f"La base de datos tardó en cargarse {total_time} segundos")
     return df
